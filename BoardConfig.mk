@@ -9,6 +9,7 @@
 # is skipped
 TARGET_NO_KERNEL := true
 TARGET_NO_BOOTLOADER := true
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi
 BOARD_USES_GENERIC_AUDIO := true
 
