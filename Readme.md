@@ -4,6 +4,28 @@ This sample configuration was provided by Embedded Android by Karim Yaghmour.  F
 
 It was primarily written to act as a very basic, but functional example of the files required by a device in order to be built by the AOSP.  This is by no means a complete list of files, but is roughly the minimum.
 
+## Version
+
+This is meant to be compiled against Android 5.0.2.
+
+This was the latest rev that the Inforce BSP V2.0 supported at the time.  Though it should not need the Inforce BSP to run.
+
+
+## Using
+
+1. Set up the android development environment following the guide in [Establishing a Build Environment](https://source.android.com/source/initializing.html)
+
+2. Follow the buid in [Downloading the Source](https://source.android.com/source/downloading.html) to get the source code for -b android-5.0.2_r3
+
+3. Using a manifest_local.xml file or manual copying, move the contents of this repository into devices/sentera/snaptest
+
+4. Run the build scripts via the following
+'''shell
+$ source build/envsetup.sh
+$ lunch full_snaptest\-eng
+$ make -j8
+'''
+
 ## Notes
 
 ### Best Practices

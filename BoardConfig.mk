@@ -16,6 +16,23 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_ABI := armeabi-v7a
-BOARD_USES_GENERIC_AUDIO := true
 
-USB_CAMERA_STUB := true
+BOARD_USES_GENERIC_AUDIO := true
+USE_CAMERA_STUB := true
+
+# Addresses build errors in the graphics/Paint.cpp:809
+BOARD_USE_LEGACY_UI := true
+BUILD_EMULATOR_OPENGL := true
+USE_OPENGL_RENDERER := true
+
+# Added to prevent a cryptfs error on build
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Build complains it is out of size when creating system 
+# image in build_image.py
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 576716800
+
+# New build requires block size or the image will not create
+# It fails when writing the system.img file
+BOARD_FLASH_BLOCK_SIZE := 512
+
