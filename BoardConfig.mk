@@ -9,19 +9,20 @@
 # is skipped
 TARGET_NO_KERNEL := true
 TARGET_NO_BOOTLOADER := true
-TARGET_ARCH := arm
 
 # These cpu values were pulled from /device/generic/arm7a-a-neon
 # in order to get a valid set of cpu architechtures to build
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
 
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
 # Addresses build errors in the graphics/Paint.cpp:809
-BOARD_USE_LEGACY_UI := true
+#BOARD_USE_LEGACY_UI := true
 BUILD_EMULATOR_OPENGL := true
 USE_OPENGL_RENDERER := true
 
@@ -31,6 +32,13 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Build complains it is out of size when creating system 
 # image in build_image.py
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 576716800
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 576716800
+
+# These fixes were added since the emulator could not find the type
+# of the user partition (wasn't specified)
+TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
+BOARD_CACHEIMAGE_PARTITION_SIZE := 69206016
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # New build requires block size or the image will not create
 # It fails when writing the system.img file

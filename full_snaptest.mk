@@ -8,18 +8,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # For android >4.2 use full_base.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
-
-
-
 # Allows replacing of default packages (not to do with dtb's)
 DEVICE_PACKAGE_OVERLAYS :=
 
 # Allows adding of additional packages beyond the inherited onces. 
 # Will likely be needed to add custom apps, binaries, or libraries
 PRODUCT_PACKAGES :=
-
-
-
 
 # Copy raw configuration files, kernel modules, firmware, etc to specific 
 # folders
