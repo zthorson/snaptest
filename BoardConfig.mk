@@ -10,7 +10,12 @@
 TARGET_NO_KERNEL := true
 TARGET_NO_BOOTLOADER := true
 TARGET_ARCH := arm
-TARGET_CPU_ABI := armeabi
+
+# These cpu values were pulled from /device/generic/arm7a-a-neon
+# in order to get a valid set of cpu architechtures to build
+TARGET_ARCH_VARIANT := armv7-a
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_ABI := armeabi-v7a
 BOARD_USES_GENERIC_AUDIO := true
 
 USB_CAMERA_STUB := true
