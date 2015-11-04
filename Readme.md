@@ -17,13 +17,24 @@ This was the latest rev that the Inforce BSP V2.0 supported at the time.  Though
 
 2. Follow the buid in [Downloading the Source](https://source.android.com/source/downloading.html) to get the source code for -b android-5.0.2_r3
 
-3. Using a manifest_local.xml file or manual copying, move the contents of this repository into devices/sentera/snaptest
+3. Install libgl mesa for the emulator to avoid missing open GL Errors
 
-4. Run the build scripts via the following
+'''shell
+$ sudo apt-get install libgl1-mesa-dev
+'''
+
+4. Using a manifest_local.xml file or manual copying, move the contents of this repository into devices/sentera/snaptest
+
+5. Run the build scripts via the following
 '''shell
 $ source build/envsetup.sh
 $ lunch full_snaptest\-eng
 $ make -j8
+'''
+
+6. Run the emulator using the following.  BE SURE TO DISABLE SELINUX or the system will NOT boot.
+'''shell
+$ emulator -selinux diable &
 '''
 
 ## Notes
@@ -41,3 +52,7 @@ Under the company name, you can create a common directory (/devices/sentera/comm
 ### Adding Packages
 
 In the main or another subdirectory, add the required source along with an appropriate Android.mk file.  Then you MUST add the name of the package to the PRODUCT_PACKAGES variable, or the package will be build, but not added to the AOSP.
+
+## TODO
+
+Next steps involve seeing minimal I can make the build in preparation for doing the same to the production image.  This will involve no longer using full_base, but using something closser to embedded.mk.

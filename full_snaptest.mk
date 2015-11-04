@@ -6,18 +6,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Pulls in all modules required to be equivalent to full-eng
 # For android >4.2 use full_base.mk
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
+
+# Required configs to run the emulator (goldfish)
+$(call inherit-product, device/generic/qemu/qemu_base.mk)
 
 # Allows replacing of default packages (not to do with dtb's)
-DEVICE_PACKAGE_OVERLAYS :=
+DEVICE_PACKAGE_OVERLAYS +=
 
 # Allows adding of additional packages beyond the inherited onces. 
 # Will likely be needed to add custom apps, binaries, or libraries
-PRODUCT_PACKAGES :=
+PRODUCT_PACKAGES +=
 
 # Copy raw configuration files, kernel modules, firmware, etc to specific 
 # folders
-PRODUCT_COPY_FILES :=
+PRODUCT_COPY_FILES +=
 
 # These should match what you see in lunch
 PRODUCT_NAME := full_snaptest
