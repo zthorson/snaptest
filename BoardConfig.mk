@@ -9,22 +9,23 @@
 # is skipped
 TARGET_NO_KERNEL := true
 TARGET_NO_BOOTLOADER := true
+TARGET_ARCH := arm
 
 # These cpu values were pulled from /device/generic/arm7a-a-neon
 # in order to get a valid set of cpu architechtures to build
-TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 
+HAVE_HTC_AUDIO_DRIVER := true
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
 # Addresses build errors in the graphics/Paint.cpp:809
-#BOARD_USE_LEGACY_UI := true
 BUILD_EMULATOR_OPENGL := true
 USE_OPENGL_RENDERER := true
+VSYNC_EVENT_PHASE_OFFSET_NS := 0
 
 # Added to prevent a cryptfs error on build
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -64,8 +65,8 @@ BOARD_FLASH_BLOCK_SIZE := 512
 # Currently running the emulator with this disabled:
 # IE emulator -selinux disabled
 
- BOARD_SEPOLICY_DIRS += build/target/board/generic/sepolicy
- BOARD_SEPOLICY_UNION += \
+BOARD_SEPOLICY_DIRS += build/target/board/generic/sepolicy
+BOARD_SEPOLICY_UNION += \
         bootanim.te \
         device.te \
         domain.te \
@@ -80,3 +81,13 @@ BOARD_FLASH_BLOCK_SIZE := 512
 # After switching to embedded.mk, got error:
 # LIBART_IMG_HOST_BASE_ADDRESS unset
 ANDROID_COMMON_BUILD_MK := true
+
+# This is an optimization to help emulator startup on Linux
+# Enables dex-preoptimization to speed up first boot sequence
+# of an SDK AVD.
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+  endif
+endif
+DONT_DEXPREOPT_PREBUILTS := true

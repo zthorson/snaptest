@@ -1,22 +1,29 @@
 # Full makefile details for this particular board.
 # Sample basic library from Embedded Android - Page 144
 
-# Pull in all locales for language options from base AOSP 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+# Use a small subset of languages
+# $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_small.mk)
 
-# Pulls in all modules required to be equivalent to full-eng
-# For android >4.2 use full_base.mk
+# Pulls in all modules required to run a minimal android install
 $(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_tiny.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
-# Required configs to run the emulator (goldfish)
-$(call inherit-product, device/generic/qemu/qemu_base.mk)
+# Pulls in definitions required to run the emulator 
+# (We might be able to add this to the Inforce emulation to allow running that image)
+# -- The following calls are already made by full.mk, so not needed for this
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulator.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/board/generic/device.mk)
+# --
+
 
 # Allows replacing of default packages (not to do with dtb's)
 DEVICE_PACKAGE_OVERLAYS +=
 
 # Allows adding of additional packages beyond the inherited onces. 
 # Will likely be needed to add custom apps, binaries, or libraries
-PRODUCT_PACKAGES +=
+PRODUCT_PACKAGES += 
 
 # Copy raw configuration files, kernel modules, firmware, etc to specific 
 # folders
