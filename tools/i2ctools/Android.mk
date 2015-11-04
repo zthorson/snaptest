@@ -1,5 +1,7 @@
 LOCAL_PATH:= $(call my-dir)
  
+# If LOCAL_MODULE_TAGS is set to optional
+# Then we have to to include the LOCAL_MODULE name in the appropriate board config
 include $(CLEAR_VARS)
  
 LOCAL_MODULE_TAGS := optional
@@ -50,4 +52,5 @@ LOCAL_CPPFLAGS += -DANDROID
 LOCAL_SHARED_LIBRARIES:=libc
 LOCAL_STATIC_LIBRARIES := i2c-tools
 LOCAL_C_INCLUDES += $(LOCAL_PATH) $(LOCAL_PATH)/$(KERNEL_PATH)/include
+
 include $(BUILD_EXECUTABLE)
