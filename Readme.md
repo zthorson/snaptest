@@ -28,9 +28,9 @@ This is a standard full build of android.  The emulator should boot and display 
 
 3. Install libgl mesa for the emulator to avoid missing open GL Errors
 
-'''shell
+```shell
 $ sudo apt-get install libgl1-mesa-dev
-'''
+```
 
 4. Using a manifest_local.xml file or manual copying, move the contents of this repository into devices/sentera/snaptest
 
