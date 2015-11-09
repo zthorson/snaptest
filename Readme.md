@@ -6,10 +6,19 @@ It was primarily written to act as a very basic, but functional example of the f
 
 ## Version
 
-This is meant to be compiled against Android 5.0.2.
+This is meant to be compiled against Android 5.0.2 from googles source manifest file.
 
-This was the latest rev that the Inforce BSP V2.0 supported at the time.  Though it should not need the Inforce BSP to run.
+**IMPORTANT:** The CodeAuroraForum Manifest file (Included in the Inforce BSP Build) does NOT work for emulators.  Use the android source only for this project.
 
+## Build Options
+
+#### embedded_snaptest-eng
+
+This is a complete barebones simulator environment.  It does NOT include the android framework or Java in any way.  Because of this, running this emulator will result in a blank screen, even though the environment boots.  You will have to use *adb shell* to interact with it.
+
+#### full_snaptest-eng
+
+This is a standard full build of android.  The emulator should boot and display the main screen to the user.
 
 ## Using
 
@@ -26,16 +35,16 @@ $ sudo apt-get install libgl1-mesa-dev
 4. Using a manifest_local.xml file or manual copying, move the contents of this repository into devices/sentera/snaptest
 
 5. Run the build scripts via the following
-'''shell
+```shell
 $ source build/envsetup.sh
-$ lunch full_snaptest\-eng
-$ make -j8
-'''
+$ lunch full_snaptest-eng OR lunch embedded_snaptest-eng
+$ make -j16
+```
 
-6. Run the emulator using the following.  BE SURE TO DISABLE SELINUX or the system will NOT boot.
-'''shell
-$ emulator -selinux diable &
-'''
+6. Run the emulator using the following.  
+```shell
+$ emulator -show-kernel &
+```
 
 ## Notes
 

@@ -4,4 +4,5 @@
 # Basic makefile from Page 144 of Embedded Android Book
 
 PRODUCT_MAKEFILES := \
-$(LOCAL_DIR)/embedded_snaptest.mk
+$(LOCAL_DIR)/embedded_snaptest.mk \
+$(LOCAL_DIR)/full_snaptest.mk

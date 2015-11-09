@@ -18,8 +18,13 @@ TARGET_CPU_VARIANT := generic
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 
+# Some framework code requires this to enable BT
+BOARD_HAVE_BLUETOOTH := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/generic/common/bluetooth
+
 HAVE_HTC_AUDIO_DRIVER := true
 BOARD_USES_GENERIC_AUDIO := true
+
 USE_CAMERA_STUB := true
 
 # Addresses build errors in the graphics/Paint.cpp:809
@@ -80,7 +85,7 @@ BOARD_SEPOLICY_UNION += \
 
 # After switching to embedded.mk, got error:
 # LIBART_IMG_HOST_BASE_ADDRESS unset
-ANDROID_COMMON_BUILD_MK := true
+# ANDROID_COMMON_BUILD_MK := true
 
 # This is an optimization to help emulator startup on Linux
 # Enables dex-preoptimization to speed up first boot sequence
@@ -90,4 +95,4 @@ ifeq ($(HOST_OS),linux)
     WITH_DEXPREOPT := true
   endif
 endif
-DONT_DEXPREOPT_PREBUILTS := true
+#DONT_DEXPREOPT_PREBUILTS := true
