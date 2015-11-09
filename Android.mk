@@ -1,11 +1,9 @@
 # This makefile simply builds any sub libraries that may be present in the folder
+ifneq ($(filter snaptest,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
-# ALWAYS run this to clear any old local variables that a prior module
-# may have left behind.
-include $(CLEAR_VARS)
+# This does NOT traverse the tree, only the first level, so specify tools
+include $(call all-makefiles-under,$(LOCAL_PATH)/tools)
 
-ifneq ($(filter snaptest,$(TARGET_DEVICE)),)
-include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
